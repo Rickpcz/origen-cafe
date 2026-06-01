@@ -1,0 +1,402 @@
+---
+const categorias = [
+  { id: "todos", label: "Todos" },
+  { id: "brunch", label: "Brunch" },
+  { id: "bebidas", label: "Bebidas" },
+  { id: "postres", label: "Postres" },
+];
+
+const platos = [
+  {
+    id: 1,
+    categoria: "brunch",
+    nombre: "Avocado Toast",
+    descripcion: "Pan artesanal tostado, aguacate machacado, huevo poché, microgreens y aceite de oliva extra virgen.",
+    precio: "$145",
+    imagen: "https://images.unsplash.com/photo-1623691752472-a6d33855e5de?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    tag: "Chef's pick",
+  },
+  {
+    id: 2,
+    categoria: "brunch",
+    nombre: "Pancakes de Ricotta",
+    descripcion: "Pancakes esponjosos con ricotta fresca, miel de abeja, frutos rojos y mantequilla de avellana.",
+    precio: "$135",
+    imagen: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80",
+    tag: null,
+  },
+  {
+    id: 3,
+    categoria: "brunch",
+    nombre: "Huevos Benedictinos",
+    descripcion: "Muffin inglés, jamón serrano, huevo pochado y salsa holandesa al estragón.",
+    precio: "$155",
+    imagen: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&q=80",
+    tag: "Favorito",
+  },
+  {
+    id: 4,
+    categoria: "brunch",
+    nombre: "Bowl Açaí",
+    descripcion: "Base de açaí con granola casera, plátano, coco rallado, semillas de chía y miel.",
+    precio: "$120",
+    imagen: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
+    tag: null,
+  },
+  {
+    id: 5,
+    categoria: "bebidas",
+    nombre: "Latte de Especialidad",
+    descripcion: "Espresso doble con leche texturizada al vapor. Origen único: Chiapas, tostión media.",
+    precio: "$75",
+    imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
+    tag: "Origen único",
+  },
+  {
+    id: 6,
+    categoria: "bebidas",
+    nombre: "Cold Brew",
+    descripcion: "Infusión en frío por 18 horas. Notas de chocolate oscuro y caramelo. Servido con hielo.",
+    precio: "$85",
+    imagen: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800&q=80",
+    tag: null,
+  },
+  {
+    id: 7,
+    categoria: "bebidas",
+    nombre: "Matcha Latte",
+    descripcion: "Matcha ceremonial japonés con leche de avena. Suave, herbáceo y reconfortante.",
+    precio: "$80",
+    imagen: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&q=80",
+    tag: null,
+  },
+  {
+    id: 8,
+    categoria: "postres",
+    nombre: "Tarta de Limón",
+    descripcion: "Base de galleta, crema de limón amarillo, merengue italiano tostado al momento.",
+    precio: "$95",
+    imagen: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
+    tag: "Temporada",
+  },
+  {
+    id: 9,
+    categoria: "postres",
+    nombre: "Brownie Fondant",
+    descripcion: "Brownie de chocolate belga 70%, centro líquido, con helado de vainilla de Madagascar.",
+    precio: "$110",
+    imagen: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80",
+    tag: null,
+  },
+];
+---
+
+<section id="menu" style="
+  background: #f5efe6;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+">
+
+  <!-- Textura decorativa fondo -->
+  <div style="
+    position: absolute;
+    top: 0; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <div style="max-width: 1100px; margin: 0 auto;">
+
+    <!-- Header -->
+    <div class="menu-header" style="
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+      flex-wrap: wrap;
+      gap: 32px;
+    ">
+      <div>
+        <div style="
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 16px;
+        ">
+          <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+          <span style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #c8956c;
+          ">Nuestra carta</span>
+        </div>
+        <h2 style="
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(36px, 5vw, 56px);
+          font-weight: 800;
+          line-height: 1.05;
+          letter-spacing: -1.5px;
+          color: #1a0f0a;
+        ">
+          Hecho con<br/>
+          <em style="font-style: italic; color: #c8956c;">intención</em>
+        </h2>
+      </div>
+
+      <!-- Filtros -->
+      <div id="filtros" style="
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      ">
+        {categorias.map((cat, i) => (
+          <button
+            class="filtro-btn"
+            data-cat={cat.id}
+            style={`
+              font-family: 'DM Sans', sans-serif;
+              font-size: 12px;
+              font-weight: 600;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              padding: 9px 20px;
+              border-radius: 4px;
+              border: 1px solid ${i === 0 ? '#1a0f0a' : 'rgba(26,15,10,0.2)'};
+              background: ${i === 0 ? '#1a0f0a' : 'transparent'};
+              color: ${i === 0 ? '#f5efe6' : 'rgba(26,15,10,0.5)'};
+              cursor: pointer;
+              transition: all 0.2s;
+            `}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Grid de platos -->
+    <div id="menu-grid" style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    ">
+      {platos.map((plato) => (
+        <div
+          class="menu-card"
+          data-cat={plato.categoria}
+          style="
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            background: #1a0f0a;
+          "
+        >
+          <!-- Imagen -->
+          <img
+            src={plato.imagen}
+            alt={plato.nombre}
+            class="card-img"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease;
+              opacity: 0.88;
+            "
+          />
+
+          <!-- Overlay base -->
+          <div style="
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to top,
+              rgba(26,15,10,0.92) 0%,
+              rgba(26,15,10,0.3) 50%,
+              transparent 100%
+            );
+          "></div>
+
+          <!-- Tag -->
+          {plato.tag && (
+            <div style="
+              position: absolute;
+              top: 20px;
+              left: 20px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 10px;
+              font-weight: 600;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: #1a0f0a;
+              background: #c8956c;
+              padding: 4px 10px;
+              border-radius: 2px;
+            ">
+              {plato.tag}
+            </div>
+          )}
+
+          <!-- Info -->
+          <div style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 28px 24px;
+          ">
+            <div style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 11px;
+              font-weight: 500;
+              letter-spacing: 0.15em;
+              text-transform: uppercase;
+              color: #c8956c;
+              margin-bottom: 6px;
+            ">
+              {plato.categoria}
+            </div>
+            <div style="
+              display: flex;
+              align-items: flex-end;
+              justify-content: space-between;
+              gap: 12px;
+            ">
+              <h3 style="
+                font-family: 'Playfair Display', serif;
+                font-size: clamp(18px, 2vw, 22px);
+                font-weight: 700;
+                color: #f5efe6;
+                line-height: 1.2;
+              ">
+                {plato.nombre}
+              </h3>
+              <span style="
+                font-family: 'Playfair Display', serif;
+                font-size: 20px;
+                font-weight: 600;
+                color: #c8956c;
+                white-space: nowrap;
+              ">
+                {plato.precio}
+              </span>
+            </div>
+
+            <!-- Descripción — aparece en hover -->
+            <p class="card-desc" style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 13px;
+              font-weight: 300;
+              color: rgba(245,239,230,0.7);
+              line-height: 1.6;
+              margin-top: 10px;
+              max-height: 0;
+              overflow: hidden;
+              transition: max-height 0.4s ease, opacity 0.4s ease;
+              opacity: 0;
+            ">
+              {plato.descripcion}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .menu-card:hover .card-img {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+
+  .menu-card:hover .card-desc {
+    max-height: 80px !important;
+    opacity: 1 !important;
+  }
+
+  .filtro-btn:hover {
+    border-color: #1a0f0a !important;
+    color: #1a0f0a !important;
+  }
+
+  @media (max-width: 900px) {
+    #menu-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 560px) {
+    #menu-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Entrada del header
+  gsap.from(".menu-header", {
+    opacity: 0, y: 40,
+    duration: 0.9, ease: "power3.out",
+    scrollTrigger: { trigger: ".menu-header", start: "top 85%" }
+  });
+
+  // Entrada escalonada de cards
+  gsap.from(".menu-card", {
+    opacity: 0, y: 50, scale: 0.97,
+    duration: 0.8, ease: "power3.out",
+    stagger: 0.08,
+    scrollTrigger: { trigger: "#menu-grid", start: "top 85%" }
+  });
+
+  // Filtros
+  const btns = document.querySelectorAll<HTMLElement>(".filtro-btn");
+  const cards = document.querySelectorAll<HTMLElement>(".menu-card");
+
+  btns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const cat = btn.dataset.cat;
+
+      // Actualizar estilos de botones
+      btns.forEach(b => {
+        b.style.background = "transparent";
+        b.style.color = "rgba(26,15,10,0.5)";
+        b.style.borderColor = "rgba(26,15,10,0.2)";
+      });
+      btn.style.background = "#1a0f0a";
+      btn.style.color = "#f5efe6";
+      btn.style.borderColor = "#1a0f0a";
+
+      // Filtrar cards con GSAP
+      cards.forEach(card => {
+        const match = cat === "todos" || card.dataset.cat === cat;
+
+        if (match) {
+          gsap.to(card, {
+            opacity: 1, scale: 1,
+            duration: 0.4, ease: "power2.out",
+            display: "block",
+          });
+        } else {
+          gsap.to(card, {
+            opacity: 0, scale: 0.96,
+            duration: 0.3, ease: "power2.in",
+            onComplete: () => { card.style.display = "none"; }
+          });
+        }
+      });
+    });
+  });
+</script>

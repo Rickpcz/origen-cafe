@@ -1,0 +1,476 @@
+---
+---
+
+<section id="reservaciones" style="
+  background: #f5efe6;
+  padding: 120px 24px;
+  position: relative;
+  overflow: hidden;
+">
+
+  <!-- Decoración fondo -->
+  <div style="
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,149,108,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <div style="
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  " id="reservaciones-grid">
+
+    <!-- Columna izquierda: info -->
+    <div id="reservaciones-info">
+
+      <!-- Eyebrow -->
+      <div style="
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+      ">
+        <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+        <span style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #c8956c;
+        ">Reservaciones</span>
+      </div>
+
+      <h2 style="
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        color: #1a0f0a;
+        margin-bottom: 24px;
+      ">
+        Asegura tu<br/>
+        <em style="font-style: italic; color: #c8956c;">lugar</em> con<br/>
+        anticipación
+      </h2>
+
+      <p style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(26,15,10,0.6);
+        line-height: 1.8;
+        margin-bottom: 48px;
+        max-width: 380px;
+      ">
+        Los fines de semana suelen llenarse rápido. Reserva con anticipación y garantiza tu mesa para el brunch perfecto.
+      </p>
+
+      <!-- Horarios -->
+      <div style="
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid rgba(26,15,10,0.08);
+      ">
+        {[
+          { dia: "Lunes — Viernes", horario: "8:00 am — 4:00 pm" },
+          { dia: "Sábado", horario: "8:00 am — 5:00 pm" },
+          { dia: "Domingo", horario: "9:00 am — 3:00 pm" },
+        ].map(h => (
+          <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(26,15,10,0.08);
+          ">
+            <span style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              color: rgba(26,15,10,0.5);
+              letter-spacing: 0.02em;
+            ">{h.dia}</span>
+            <span style="
+              font-family: 'Playfair Display', serif;
+              font-size: 16px;
+              font-weight: 600;
+              color: #1a0f0a;
+              letter-spacing: -0.3px;
+            ">{h.horario}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Columna derecha: formulario -->
+    <div id="reservaciones-form-wrap">
+      <div style="
+        background: #1a0f0a;
+        border-radius: 8px;
+        padding: 48px 40px;
+        position: relative;
+        overflow: hidden;
+      ">
+
+        <!-- Decoración interior -->
+        <div style="
+          position: absolute;
+          top: -80px;
+          right: -80px;
+          width: 300px;
+          height: 300px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(200,149,108,0.08) 0%, transparent 70%);
+          pointer-events: none;
+        "></div>
+
+        <h3 style="
+          font-family: 'Playfair Display', serif;
+          font-size: 26px;
+          font-weight: 700;
+          color: #f5efe6;
+          margin-bottom: 8px;
+          letter-spacing: -0.5px;
+        ">Hacer una reservación</h3>
+        <p style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 300;
+          color: rgba(245,239,230,0.45);
+          margin-bottom: 36px;
+          line-height: 1.6;
+        ">Te confirmamos por WhatsApp en menos de 2 horas.</p>
+
+        <!-- Form -->
+        <div style="display: flex; flex-direction: column; gap: 16px;" id="res-form">
+
+          <!-- Nombre -->
+          <div>
+            <label style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 11px;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(245,239,230,0.4);
+              display: block;
+              margin-bottom: 8px;
+            ">Nombre completo</label>
+            <input
+              type="text"
+              placeholder="Ana García"
+              class="res-input"
+              style="
+                width: 100%;
+                background: rgba(245,239,230,0.05);
+                border: 1px solid rgba(245,239,230,0.1);
+                border-radius: 4px;
+                padding: 13px 16px;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 14px;
+                color: #f5efe6;
+                outline: none;
+                transition: border-color 0.2s;
+              "
+            />
+          </div>
+
+          <!-- Teléfono -->
+          <div>
+            <label style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 11px;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(245,239,230,0.4);
+              display: block;
+              margin-bottom: 8px;
+            ">WhatsApp</label>
+            <input
+              type="tel"
+              placeholder="+52 55 1234 5678"
+              class="res-input"
+              style="
+                width: 100%;
+                background: rgba(245,239,230,0.05);
+                border: 1px solid rgba(245,239,230,0.1);
+                border-radius: 4px;
+                padding: 13px 16px;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 14px;
+                color: #f5efe6;
+                outline: none;
+                transition: border-color 0.2s;
+              "
+            />
+          </div>
+
+          <!-- Fecha y personas — fila -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="
+                font-family: 'DM Sans', sans-serif;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(245,239,230,0.4);
+                display: block;
+                margin-bottom: 8px;
+              ">Fecha</label>
+              <input
+                type="date"
+                class="res-input"
+                style="
+                  width: 100%;
+                  background: rgba(245,239,230,0.05);
+                  border: 1px solid rgba(245,239,230,0.1);
+                  border-radius: 4px;
+                  padding: 13px 16px;
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 14px;
+                  color: #f5efe6;
+                  outline: none;
+                  transition: border-color 0.2s;
+                  color-scheme: dark;
+                "
+              />
+            </div>
+            <div>
+              <label style="
+                font-family: 'DM Sans', sans-serif;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(245,239,230,0.4);
+                display: block;
+                margin-bottom: 8px;
+              ">Personas</label>
+              <select
+                class="res-input"
+                style="
+                  width: 100%;
+                  background: rgba(245,239,230,0.05);
+                  border: 1px solid rgba(245,239,230,0.1);
+                  border-radius: 4px;
+                  padding: 13px 16px;
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 14px;
+                  color: #f5efe6;
+                  outline: none;
+                  transition: border-color 0.2s;
+                  cursor: pointer;
+                "
+              >
+                <option value="" style="background:#1a0f0a;">— Selecciona —</option>
+                {[1,2,3,4,5,6,7,8].map(n => (
+                  <option value={n} style="background:#1a0f0a;">{n} {n === 1 ? 'persona' : 'personas'}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <!-- Nota especial -->
+          <div>
+            <label style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 11px;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(245,239,230,0.4);
+              display: block;
+              margin-bottom: 8px;
+            ">Nota especial <span style="opacity:0.4; font-weight:300;">(opcional)</span></label>
+            <textarea
+              placeholder="Cumpleaños, alergias, preferencias..."
+              class="res-input"
+              rows="3"
+              style="
+                width: 100%;
+                background: rgba(245,239,230,0.05);
+                border: 1px solid rgba(245,239,230,0.1);
+                border-radius: 4px;
+                padding: 13px 16px;
+                font-family: 'DM Sans', sans-serif;
+                font-size: 14px;
+                color: #f5efe6;
+                outline: none;
+                transition: border-color 0.2s;
+                resize: none;
+                line-height: 1.6;
+              "
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            id="res-submit"
+            style="
+              width: 100%;
+              background: #c8956c;
+              color: #1a0f0a;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 13px;
+              font-weight: 700;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              padding: 16px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-top: 8px;
+              transition: background 0.2s, transform 0.2s;
+            "
+            onmouseover="this.style.background='#8b5e3c'; this.style.color='#f5efe6'"
+            onmouseout="this.style.background='#c8956c'; this.style.color='#1a0f0a'"
+          >
+            Solicitar reservación
+          </button>
+
+          <!-- Nota WhatsApp -->
+          <p style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(245,239,230,0.25);
+            text-align: center;
+            line-height: 1.5;
+          ">
+            Al enviar aceptas que te contactemos por WhatsApp para confirmar tu reserva.
+          </p>
+        </div>
+
+        <!-- Estado de éxito -->
+        <div id="res-success" style="
+          display: none;
+          text-align: center;
+          padding: 40px 0;
+        ">
+          <div style="
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(200,149,108,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+          ">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12L10 17L19 7" stroke="#c8956c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4 style="
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #f5efe6;
+            margin-bottom: 10px;
+          ">¡Solicitud enviada!</h4>
+          <p style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(245,239,230,0.5);
+            line-height: 1.7;
+          ">Te confirmamos por WhatsApp<br/>en menos de 2 horas.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .res-input:focus {
+    border-color: rgba(200,149,108,0.6) !important;
+  }
+
+  .res-input::placeholder {
+    color: rgba(245,239,230,0.2);
+  }
+
+  @media (max-width: 900px) {
+    #reservaciones-grid {
+      grid-template-columns: 1fr !important;
+      gap: 48px !important;
+    }
+  }
+
+  @media (max-width: 560px) {
+    #reservaciones-form-wrap > div {
+      padding: 32px 24px !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Entrada info izquierda
+  gsap.from("#reservaciones-info > *", {
+    opacity: 0,
+    x: -30,
+    duration: 0.9,
+    ease: "power3.out",
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: "#reservaciones-info",
+      start: "top 80%",
+    },
+  });
+
+  // Entrada formulario
+  gsap.from("#reservaciones-form-wrap", {
+    opacity: 0,
+    x: 40,
+    duration: 1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#reservaciones-form-wrap",
+      start: "top 80%",
+    },
+  });
+
+  // Submit
+  const btn = document.getElementById("res-submit") as HTMLButtonElement;
+  const form = document.getElementById("res-form") as HTMLElement;
+  const success = document.getElementById("res-success") as HTMLElement;
+
+  btn.addEventListener("click", () => {
+    gsap.to(form, {
+      opacity: 0,
+      y: -20,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: () => {
+        form.style.display = "none";
+        success.style.display = "block";
+        gsap.from(success, {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          ease: "power3.out",
+        });
+      },
+    });
+  });
+</script>

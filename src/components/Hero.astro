@@ -1,0 +1,260 @@
+---
+---
+
+<section
+  id="hero"
+  style="
+    position: relative;
+    height: 100vh;
+    min-height: 680px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <!-- Imagen de fondo -->
+  <div
+    id="hero-bg"
+    style="
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.08);
+      will-change: transform;
+    "
+  ></div>
+
+  <!-- Overlay gradiente -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,15,10,0.55) 0%,
+      rgba(26,15,10,0.35) 40%,
+      rgba(26,15,10,0.75) 100%
+    );
+  "></div>
+
+  <!-- Grain texture overlay -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    pointer-events: none;
+  "></div>
+
+  <!-- Contenido -->
+  <div style="
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 860px;
+  ">
+    <!-- Eyebrow -->
+    <div
+      id="hero-eyebrow"
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        opacity: 0;
+      "
+    >
+      <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+      <span style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #c8956c;
+      ">Café de especialidad · Est. 2019</span>
+      <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+    </div>
+
+    <!-- Título -->
+    <h1
+      id="hero-title"
+      style="
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(52px, 8vw, 96px);
+        font-weight: 800;
+        line-height: 1.0;
+        letter-spacing: -2px;
+        color: #f5efe6;
+        margin-bottom: 12px;
+        opacity: 0;
+      "
+    >
+      Donde cada<br/>
+      <em style="font-style: italic !important; color: #c8956c;">taza cuenta</em><br/>
+      una historia
+    </h1>
+
+    <!-- Subtítulo -->
+    <p
+      id="hero-sub"
+      style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: clamp(15px, 2vw, 18px);
+        font-weight: 300;
+        color: rgba(245,239,230,0.75);
+        line-height: 1.7;
+        max-width: 480px;
+        margin: 0 auto 44px;
+        opacity: 0;
+      "
+    >
+      Brunch artesanal y café de origen único.<br/>
+      Abierto todos los días de 8am a 4pm.
+    </p>
+
+    <!-- CTAs -->
+    <div
+      id="hero-ctas"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        opacity: 0;
+      "
+    >
+      <a
+        href="#menu"
+        style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #1a0f0a;
+          background: #c8956c;
+          padding: 15px 36px;
+          border-radius: 4px;
+          text-decoration: none;
+          transition: background 0.2s, transform 0.2s;
+        "
+        onmouseover="this.style.background='#8b5e3c'; this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.background='#c8956c'; this.style.transform='translateY(0)'"
+      >
+        Ver menú
+      </a>
+      <a
+        href="#reservaciones"
+        style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #f5efe6;
+          background: transparent;
+          padding: 15px 36px;
+          border-radius: 4px;
+          border: 1px solid rgba(245,239,230,0.35);
+          text-decoration: none;
+          transition: border-color 0.2s, transform 0.2s;
+        "
+        onmouseover="this.style.borderColor='rgba(245,239,230,0.8)'; this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.borderColor='rgba(245,239,230,0.35)'; this.style.transform='translateY(0)'"
+      >
+        Reservar mesa
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    id="scroll-indicator"
+    style="
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      cursor: pointer;
+    "
+    onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"
+  >
+    <span style="
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245,239,230,0.5);
+    ">Scroll</span>
+    <div style="
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(245,239,230,0.5), transparent);
+    " id="scroll-line"></div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Parallax en el bg
+  const heroBg = document.getElementById("hero-bg") as HTMLElement;
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const heroH = window.innerHeight;
+    if (scrollY < heroH) {
+      const pct = scrollY / heroH;
+      heroBg.style.transform = `scale(1.08) translateY(${pct * 60}px)`;
+    }
+  }, { passive: true });
+
+  // Animación de entrada
+  const tl = gsap.timeline({ delay: 0.8 });
+
+  tl.to("#hero-eyebrow", {
+    opacity: 1, y: 0,
+    duration: 0.8, ease: "power3.out",
+    from: { y: 20 }
+  })
+  .to("#hero-title", {
+    opacity: 1, y: 0,
+    duration: 1, ease: "power3.out",
+    from: { y: 40 }
+  }, "-=0.5")
+  .to("#hero-sub", {
+    opacity: 1, y: 0,
+    duration: 0.8, ease: "power3.out",
+    from: { y: 20 }
+  }, "-=0.6")
+  .to("#hero-ctas", {
+    opacity: 1, y: 0,
+    duration: 0.7, ease: "power3.out",
+    from: { y: 20 }
+  }, "-=0.5")
+  .to("#scroll-indicator", {
+    opacity: 1,
+    duration: 1, ease: "power2.out"
+  }, "-=0.2");
+
+  // Scroll line loop
+  gsap.to("#scroll-line", {
+    scaleY: 0,
+    transformOrigin: "top",
+    duration: 1.2,
+    ease: "power2.inOut",
+    repeat: -1,
+    yoyo: false,
+    delay: 2,
+  });
+</script>
