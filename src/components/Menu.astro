@@ -1,92 +1,52 @@
 ---
-const categorias = [
-  { id: "todos", label: "Todos" },
-  { id: "brunch", label: "Brunch" },
-  { id: "bebidas", label: "Bebidas" },
-  { id: "postres", label: "Postres" },
-];
-
-const platos = [
+const destacados = [
   {
-    id: 1,
-    categoria: "brunch",
     nombre: "Avocado Toast",
     descripcion: "Pan artesanal tostado, aguacate machacado, huevo poché, microgreens y aceite de oliva extra virgen.",
     precio: "$145",
     imagen: "https://images.unsplash.com/photo-1623691752472-a6d33855e5de?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tag: "Chef's pick",
+    badge: "Chef's pick",
+    categoria: "Brunch",
   },
   {
-    id: 2,
-    categoria: "brunch",
-    nombre: "Pancakes de Ricotta",
-    descripcion: "Pancakes esponjosos con ricotta fresca, miel de abeja, frutos rojos y mantequilla de avellana.",
-    precio: "$135",
-    imagen: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80",
-    tag: null,
-  },
-  {
-    id: 3,
-    categoria: "brunch",
     nombre: "Huevos Benedictinos",
     descripcion: "Muffin inglés, jamón serrano, huevo pochado y salsa holandesa al estragón.",
     precio: "$155",
     imagen: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&q=80",
-    tag: "Favorito",
+    badge: "Favorito",
+    categoria: "Brunch",
   },
   {
-    id: 4,
-    categoria: "brunch",
-    nombre: "Bowl Açaí",
-    descripcion: "Base de açaí con granola casera, plátano, coco rallado, semillas de chía y miel.",
-    precio: "$120",
-    imagen: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
-    tag: null,
+    nombre: "Pancakes de Ricotta",
+    descripcion: "Pancakes esponjosos con ricotta fresca, miel de abeja, frutos rojos y mantequilla de avellana.",
+    precio: "$135",
+    imagen: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80",
+    badge: null,
+    categoria: "Brunch",
   },
   {
-    id: 5,
-    categoria: "bebidas",
     nombre: "Latte de Especialidad",
     descripcion: "Espresso doble con leche texturizada al vapor. Origen único: Chiapas, tostión media.",
     precio: "$75",
     imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&q=80",
-    tag: "Origen único",
+    badge: "Origen único",
+    categoria: "Bebidas",
   },
   {
-    id: 6,
-    categoria: "bebidas",
-    nombre: "Cold Brew",
-    descripcion: "Infusión en frío por 18 horas. Notas de chocolate oscuro y caramelo. Servido con hielo.",
-    precio: "$85",
-    imagen: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800&q=80",
-    tag: null,
-  },
-  {
-    id: 7,
-    categoria: "bebidas",
-    nombre: "Matcha Latte",
-    descripcion: "Matcha ceremonial japonés con leche de avena. Suave, herbáceo y reconfortante.",
-    precio: "$80",
-    imagen: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=800&q=80",
-    tag: null,
-  },
-  {
-    id: 8,
-    categoria: "postres",
     nombre: "Tarta de Limón",
     descripcion: "Base de galleta, crema de limón amarillo, merengue italiano tostado al momento.",
     precio: "$95",
     imagen: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&q=80",
-    tag: "Temporada",
+    badge: "Temporada",
+    categoria: "Postres",
   },
   {
-    id: 9,
-    categoria: "postres",
-    nombre: "Brownie Fondant",
-    descripcion: "Brownie de chocolate belga 70%, centro líquido, con helado de vainilla de Madagascar.",
-    precio: "$110",
-    imagen: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=800&q=80",
-    tag: null,
+    nombre: "Cold Brew",
+    descripcion: "Infusión en frío por 18 horas. Notas de chocolate oscuro y caramelo. Servido con hielo.",
+    precio: "$85",
+    imagen: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=800&q=80",
+    badge: null,
+    categoria: "Bebidas",
   },
 ];
 ---
@@ -98,7 +58,7 @@ const platos = [
   overflow: hidden;
 ">
 
-  <!-- Textura decorativa fondo -->
+  <!-- Decoración fondo -->
   <div style="
     position: absolute;
     top: 0; right: -200px;
@@ -112,89 +72,68 @@ const platos = [
 
     <!-- Header -->
     <div class="menu-header" style="
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 64px;
-      flex-wrap: wrap;
-      gap: 32px;
+      text-align: center;
+      margin-bottom: 72px;
     ">
-      <div>
-        <div style="
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 16px;
-        ">
-          <div style="height: 1px; width: 32px; background: #c8956c;"></div>
-          <span style="
-            font-family: 'DM Sans', sans-serif;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #c8956c;
-          ">Nuestra carta</span>
-        </div>
-        <h2 style="
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(36px, 5vw, 56px);
-          font-weight: 800;
-          line-height: 1.05;
-          letter-spacing: -1.5px;
-          color: #1a0f0a;
-        ">
-          Hecho con<br/>
-          <em style="font-style: italic; color: #c8956c;">intención</em>
-        </h2>
+      <div style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      ">
+        <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+        <span style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: #c8956c;
+        ">Destacados de la carta</span>
+        <div style="height: 1px; width: 32px; background: #c8956c;"></div>
       </div>
 
-      <!-- Filtros -->
-      <div id="filtros" style="
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
+      <h2 style="
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(36px, 5vw, 56px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        color: #1a0f0a;
+        margin-bottom: 16px;
       ">
-        {categorias.map((cat, i) => (
-          <button
-            class="filtro-btn"
-            data-cat={cat.id}
-            style={`
-              font-family: 'DM Sans', sans-serif;
-              font-size: 12px;
-              font-weight: 600;
-              letter-spacing: 0.08em;
-              text-transform: uppercase;
-              padding: 9px 20px;
-              border-radius: 4px;
-              border: 1px solid ${i === 0 ? '#1a0f0a' : 'rgba(26,15,10,0.2)'};
-              background: ${i === 0 ? '#1a0f0a' : 'transparent'};
-              color: ${i === 0 ? '#f5efe6' : 'rgba(26,15,10,0.5)'};
-              cursor: pointer;
-              transition: all 0.2s;
-            `}
-          >
-            {cat.label}
-          </button>
-        ))}
-      </div>
+        Hecho con<br/>
+        <em style="font-style: italic; color: #c8956c;">intención</em>
+      </h2>
+
+      <p style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(26,15,10,0.5);
+        line-height: 1.7;
+        max-width: 400px;
+        margin: 0 auto;
+      ">
+        Una selección de nuestros platos más queridos. Ingredientes de temporada, productores locales.
+      </p>
     </div>
 
-    <!-- Grid de platos -->
+    <!-- Grid destacados -->
     <div id="menu-grid" style="
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
+      margin-bottom: 2px;
     ">
-      {platos.map((plato) => (
+      {destacados.map((plato) => (
         <div
           class="menu-card"
-          data-cat={plato.categoria}
           style="
             position: relative;
             overflow: hidden;
             aspect-ratio: 3/4;
-            cursor: pointer;
+            cursor: default;
             background: #1a0f0a;
           "
         >
@@ -212,7 +151,7 @@ const platos = [
             "
           />
 
-          <!-- Overlay base -->
+          <!-- Overlay -->
           <div style="
             position: absolute;
             inset: 0;
@@ -224,8 +163,8 @@ const platos = [
             );
           "></div>
 
-          <!-- Tag -->
-          {plato.tag && (
+          <!-- Badge -->
+          {plato.badge && (
             <div style="
               position: absolute;
               top: 20px;
@@ -240,7 +179,7 @@ const platos = [
               padding: 4px 10px;
               border-radius: 2px;
             ">
-              {plato.tag}
+              {plato.badge}
             </div>
           )}
 
@@ -288,8 +227,6 @@ const platos = [
                 {plato.precio}
               </span>
             </div>
-
-            <!-- Descripción — aparece en hover -->
             <p class="card-desc" style="
               font-family: 'DM Sans', sans-serif;
               font-size: 13px;
@@ -309,6 +246,84 @@ const platos = [
       ))}
     </div>
 
+    <!-- CTA carta completa -->
+    <div id="menu-cta" style="
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0 0;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+">
+  <p style="
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(26,15,10,0.45);
+    letter-spacing: 0.02em;
+  ">
+    Esto es solo una muestra — la carta completa tiene mucho más.
+  </p>
+
+  <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;">
+    <a
+      href="/menu"
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #f5efe6;
+        background: #1a0f0a;
+        padding: 16px 36px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s;
+      "
+      onmouseover="this.style.background='#c8956c'; this.style.color='#1a0f0a'"
+      onmouseout="this.style.background='#1a0f0a'; this.style.color='#f5efe6'"
+    >
+      Ver carta
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a
+      href="/menu-visual"
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #1a0f0a;
+        background: transparent;
+        padding: 16px 36px;
+        border-radius: 4px;
+        border: 1.5px solid rgba(26,15,10,0.2);
+        text-decoration: none;
+        transition: all 0.2s;
+      "
+      onmouseover="this.style.borderColor='#1a0f0a'"
+      onmouseout="this.style.borderColor='rgba(26,15,10,0.2)'"
+    >
+      Ver menú con fotos
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+        <path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
   </div>
 </section>
 
@@ -321,11 +336,6 @@ const platos = [
   .menu-card:hover .card-desc {
     max-height: 80px !important;
     opacity: 1 !important;
-  }
-
-  .filtro-btn:hover {
-    border-color: #1a0f0a !important;
-    color: #1a0f0a !important;
   }
 
   @media (max-width: 900px) {
@@ -346,14 +356,12 @@ const platos = [
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
-  // Entrada del header
   gsap.from(".menu-header", {
     opacity: 0, y: 40,
     duration: 0.9, ease: "power3.out",
     scrollTrigger: { trigger: ".menu-header", start: "top 85%" }
   });
 
-  // Entrada escalonada de cards
   gsap.from(".menu-card", {
     opacity: 0, y: 50, scale: 0.97,
     duration: 0.8, ease: "power3.out",
@@ -361,42 +369,9 @@ const platos = [
     scrollTrigger: { trigger: "#menu-grid", start: "top 85%" }
   });
 
-  // Filtros
-  const btns = document.querySelectorAll<HTMLElement>(".filtro-btn");
-  const cards = document.querySelectorAll<HTMLElement>(".menu-card");
-
-  btns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const cat = btn.dataset.cat;
-
-      // Actualizar estilos de botones
-      btns.forEach(b => {
-        b.style.background = "transparent";
-        b.style.color = "rgba(26,15,10,0.5)";
-        b.style.borderColor = "rgba(26,15,10,0.2)";
-      });
-      btn.style.background = "#1a0f0a";
-      btn.style.color = "#f5efe6";
-      btn.style.borderColor = "#1a0f0a";
-
-      // Filtrar cards con GSAP
-      cards.forEach(card => {
-        const match = cat === "todos" || card.dataset.cat === cat;
-
-        if (match) {
-          gsap.to(card, {
-            opacity: 1, scale: 1,
-            duration: 0.4, ease: "power2.out",
-            display: "block",
-          });
-        } else {
-          gsap.to(card, {
-            opacity: 0, scale: 0.96,
-            duration: 0.3, ease: "power2.in",
-            onComplete: () => { card.style.display = "none"; }
-          });
-        }
-      });
-    });
+  gsap.from("#menu-cta", {
+    opacity: 0, y: 30,
+    duration: 0.8, ease: "power3.out",
+    scrollTrigger: { trigger: "#menu-cta", start: "top 90%" }
   });
 </script>

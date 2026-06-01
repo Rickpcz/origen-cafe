@@ -1,0 +1,497 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const carta = [
+  {
+    categoria: "Brunch",
+    descripcion: "Servido de 8am a 12pm",
+    platillos: [
+      { nombre: "Avocado Toast", descripcion: "Pan artesanal, aguacate machacado, huevo poché, microgreens y aceite de oliva extra virgen.", precio: "$145", badge: "Chef's pick" },
+      { nombre: "Huevos Benedictinos", descripcion: "Muffin inglés, jamón serrano, huevo pochado y salsa holandesa al estragón.", precio: "$155", badge: "Favorito" },
+      { nombre: "Pancakes de Ricotta", descripcion: "Pancakes esponjosos con ricotta fresca, miel de abeja y frutos rojos.", precio: "$135", badge: null },
+      { nombre: "Bowl Açaí", descripcion: "Base de açaí con granola casera, plátano, coco rallado y miel.", precio: "$120", badge: null },
+      { nombre: "Tostadas Francesas", descripcion: "Brioche en leche con canela, maple, fresas y crema chantilly.", precio: "$130", badge: null },
+      { nombre: "Omelette de Hongos", descripcion: "Hongos silvestres, queso gruyère, hierbas frescas y tostada artesanal.", precio: "$140", badge: null },
+      { nombre: "Granola Origen", descripcion: "Granola horneada en casa, yogurt griego, miel y fruta de temporada.", precio: "$110", badge: null },
+      { nombre: "Chilaquiles Rojos", descripcion: "Tortilla en salsa roja, pollo deshebrado, crema, queso fresco y cebolla morada.", precio: "$150", badge: "Temporada" },
+    ],
+  },
+  {
+    categoria: "Para Compartir",
+    descripcion: "Ideal para la mesa",
+    platillos: [
+      { nombre: "Tabla Artesanal", descripcion: "Quesos maduros, embutidos, mermelada de higo, nueces y pan de masa madre.", precio: "$280", badge: null },
+      { nombre: "Guacamole de la Casa", descripcion: "Aguacate Hass, jitomate, cebolla, cilantro y totopos horneados.", precio: "$130", badge: null },
+      { nombre: "Hummus con Verduras", descripcion: "Hummus casero con aceite de oliva, pimentón y bastones de verdura fresca.", precio: "$115", badge: null },
+      { nombre: "Bruschetta Trío", descripcion: "Tres versiones: jitomate-albahaca, ricotta-miel y aguacate-limón.", precio: "$160", badge: "Chef's pick" },
+    ],
+  },
+  {
+    categoria: "Ensaladas",
+    descripcion: "Frescas y de temporada",
+    platillos: [
+      { nombre: "Ensalada Niçoise", descripcion: "Atún, ejotes, papa cambray, huevo cocido, aceituna y vinagreta de mostaza.", precio: "$165", badge: null },
+      { nombre: "César Clásica", descripcion: "Lechuga romana, aderezo César casero, crutones de masa madre y parmesano.", precio: "$140", badge: null },
+      { nombre: "Betabel y Queso de Cabra", descripcion: "Betabel rostizado, queso de cabra, arúgula, nuez y vinagreta de naranja.", precio: "$150", badge: "Temporada" },
+      { nombre: "Quinoa con Vegetales", descripcion: "Quinoa, calabaza rostizada, espinaca, semillas de girasol y aderezo tahini.", precio: "$145", badge: null },
+    ],
+  },
+  {
+    categoria: "Bebidas Calientes",
+    descripcion: "Café de especialidad y más",
+    platillos: [
+      { nombre: "Espresso", descripcion: "Doble shot. Origen: Chiapas, tostión media. Notas de cajeta y cítrico.", precio: "$55", badge: null },
+      { nombre: "Americano", descripcion: "Espresso doble con agua caliente filtrada. Limpio y profundo.", precio: "$60", badge: null },
+      { nombre: "Latte", descripcion: "Espresso doble con leche texturizada al vapor. Suave y cremoso.", precio: "$75", badge: "Favorito" },
+      { nombre: "Cappuccino", descripcion: "Espresso, leche vaporizada y espuma sedosa en proporciones exactas.", precio: "$70", badge: null },
+      { nombre: "Flat White", descripcion: "Doble ristretto con leche microespumada. Intenso y sedoso.", precio: "$75", badge: null },
+      { nombre: "Matcha Latte", descripcion: "Matcha ceremonial japonés con leche de avena. Herbáceo y reconfortante.", precio: "$80", badge: null },
+      { nombre: "Chai Latte", descripcion: "Mezcla de especias artesanal con leche vaporizada y miel.", precio: "$75", badge: null },
+      { nombre: "Chocolate Caliente", descripcion: "Cacao 70% de Tabasco con leche entera y un toque de canela.", precio: "$80", badge: null },
+    ],
+  },
+  {
+    categoria: "Bebidas Frías",
+    descripcion: "Refrescantes y artesanales",
+    platillos: [
+      { nombre: "Cold Brew", descripcion: "Infusión en frío 18 horas. Notas de chocolate y caramelo.", precio: "$85", badge: "Origen único" },
+      { nombre: "Latte Helado", descripcion: "Espresso doble sobre hielo con leche fría texturizada.", precio: "$80", badge: null },
+      { nombre: "Agua de Jamaica", descripcion: "Jamaica de Oaxaca con piloncillo y limón. Sin colorantes.", precio: "$55", badge: null },
+      { nombre: "Limonada Menta", descripcion: "Limones frescos, menta de la huerta, agua mineral y miel.", precio: "$65", badge: null },
+      { nombre: "Smoothie Verde", descripcion: "Espinaca, manzana verde, pepino, jengibre y agua de coco.", precio: "$90", badge: null },
+    ],
+  },
+  {
+    categoria: "Postres",
+    descripcion: "Elaborados en casa cada mañana",
+    platillos: [
+      { nombre: "Tarta de Limón", descripcion: "Base de galleta, crema de limón amarillo y merengue italiano tostado.", precio: "$95", badge: "Temporada" },
+      { nombre: "Brownie Fondant", descripcion: "Chocolate belga 70%, centro líquido y helado de vainilla de Madagascar.", precio: "$110", badge: null },
+      { nombre: "Cheesecake New York", descripcion: "Clásico horneado con base de galleta y coulis de frutos rojos.", precio: "$100", badge: "Favorito" },
+      { nombre: "Croissant de Almendra", descripcion: "Croissant artesanal relleno de crema de almendra y azúcar glass.", precio: "$85", badge: null },
+      { nombre: "Muffin de Arándano", descripcion: "Muffin esponjoso con arándanos frescos y corteza de azúcar morena.", precio: "$65", badge: null },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Carta — Origen Café"
+  description="Nuestra carta completa de brunch, bebidas y postres. Ingredientes de temporada y productores locales."
+>
+
+  <!-- Navbar mínimo para la página de carta -->
+  <header style="
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: #f5efe6;
+    border-bottom: 1px solid rgba(26,15,10,0.08);
+    padding: 0 40px;
+  ">
+    <div style="
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    ">
+      <a href="/" style="
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        text-decoration: none;
+      ">
+        <span style="
+          font-family: 'Playfair Display', serif;
+          font-size: 20px;
+          font-weight: 700;
+          color: #1a0f0a;
+          letter-spacing: -0.3px;
+        ">Origen</span>
+        <span style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.25em;
+          text-transform: uppercase;
+          color: #c8956c;
+        ">Café & Brunch</span>
+      </a>
+
+      <a
+        href="/"
+        style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(26,15,10,0.5);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: color 0.2s;
+        "
+        onmouseover="this.style.color='#1a0f0a'"
+        onmouseout="this.style.color='rgba(26,15,10,0.5)'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Volver al inicio
+      </a>
+    </div>
+  </header>
+
+  <main style="
+    padding-top: 80px;
+    background: #f5efe6;
+    min-height: 100vh;
+  ">
+
+    <!-- Hero de la carta -->
+    <div style="
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 40px 64px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(26,15,10,0.08);
+    " id="carta-hero">
+      <div>
+        <div style="
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+        ">
+          <div style="height: 1px; width: 32px; background: #c8956c;"></div>
+          <span style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #c8956c;
+          ">Carta completa</span>
+        </div>
+        <h1 style="
+          font-family: 'Playfair Display', serif;
+          font-size: clamp(40px, 6vw, 72px);
+          font-weight: 800;
+          line-height: 1.0;
+          letter-spacing: -2px;
+          color: #1a0f0a;
+        ">
+          Nuestra<br/>
+          <em style="font-style: italic; color: #c8956c;">carta</em>
+        </h1>
+      </div>
+      <div style="max-width: 320px;">
+        <p style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color: rgba(26,15,10,0.5);
+          line-height: 1.8;
+          margin-bottom: 20px;
+        ">
+          Todos nuestros platillos se preparan al momento con ingredientes de temporada y productores locales. Los precios incluyen IVA.
+        </p>
+        <div style="
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+        ">
+          {["Chef's pick", "Favorito", "Temporada", "Origen único"].map(b => (
+            <div style="
+              display: flex;
+              align-items: center;
+              gap: 6px;
+            ">
+              <div style="
+                width: 8px; height: 8px;
+                background: #c8956c;
+                border-radius: 1px;
+              "></div>
+              <span style="
+                font-family: 'DM Sans', sans-serif;
+                font-size: 11px;
+                font-weight: 500;
+                color: rgba(26,15,10,0.45);
+                letter-spacing: 0.05em;
+              ">{b}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Carta dos columnas -->
+    <div style="
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    " id="carta-body">
+
+      {carta.map((seccion, si) => (
+        <div
+          class="carta-seccion"
+          style={`
+            padding: 64px 0;
+            ${si < carta.length - 1 ? 'border-bottom: 1px solid rgba(26,15,10,0.08);' : ''}
+          `}
+        >
+          <!-- Encabezado de sección -->
+          <div style="
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 8px;
+          ">
+            <h2 style="
+              font-family: 'Playfair Display', serif;
+              font-size: clamp(28px, 4vw, 40px);
+              font-weight: 800;
+              letter-spacing: -1px;
+              color: #1a0f0a;
+              line-height: 1;
+            ">{seccion.categoria}</h2>
+            <span style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+              color: rgba(26,15,10,0.35);
+              letter-spacing: 0.05em;
+              font-style: italic;
+            ">{seccion.descripcion}</span>
+          </div>
+
+          <!-- Grid dos columnas de platillos -->
+          <div style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+          " class="platillos-grid">
+            {seccion.platillos.map((p, pi) => (
+              <div
+                class="platillo-row"
+                style={`
+                  padding: 20px 24px 20px 0;
+                  border-bottom: 1px solid rgba(26,15,10,0.06);
+                  ${pi % 2 === 1 ? 'padding-left: 40px; padding-right: 0; border-left: 1px solid rgba(26,15,10,0.06);' : ''}
+                  transition: background 0.2s;
+                  position: relative;
+                `}
+              >
+                <!-- Nombre + badge + precio -->
+                <div style="
+                  display: flex;
+                  align-items: flex-start;
+                  justify-content: space-between;
+                  gap: 16px;
+                  margin-bottom: 6px;
+                ">
+                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <h3 style="
+                      font-family: 'Playfair Display', serif;
+                      font-size: 17px;
+                      font-weight: 700;
+                      color: #1a0f0a;
+                      letter-spacing: -0.3px;
+                      line-height: 1.2;
+                    ">{p.nombre}</h3>
+                    {p.badge && (
+                      <span style="
+                        font-family: 'DM Sans', sans-serif;
+                        font-size: 9px;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        text-transform: uppercase;
+                        color: #c8956c;
+                        border: 1px solid rgba(200,149,108,0.4);
+                        padding: 2px 7px;
+                        border-radius: 2px;
+                        white-space: nowrap;
+                      ">{p.badge}</span>
+                    )}
+                  </div>
+                  <span style="
+                    font-family: 'Playfair Display', serif;
+                    font-size: 17px;
+                    font-weight: 600;
+                    color: #1a0f0a;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                  ">{p.precio}</span>
+                </div>
+                <!-- Descripción -->
+                <p style="
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 13px;
+                  font-weight: 300;
+                  color: rgba(26,15,10,0.45);
+                  line-height: 1.65;
+                  max-width: 380px;
+                ">{p.descripcion}</p>
+
+                <!-- Línea decorativa hover -->
+                <div class="platillo-line" style="
+                  position: absolute;
+                  bottom: -1px;
+                  left: 0;
+                  width: 0;
+                  height: 1px;
+                  background: #c8956c;
+                  transition: width 0.35s ease;
+                "></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+    <!-- Footer strip -->
+    <div style="
+      border-top: 1px solid rgba(26,15,10,0.08);
+      background: #1a0f0a;
+      padding: 40px;
+    ">
+      <div style="
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      ">
+        <div>
+          <p style="
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #f5efe6;
+            margin-bottom: 4px;
+          ">¿Tienes alguna alergia o restricción?</p>
+          <p style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(245,239,230,0.4);
+          ">Díselo a tu mesero — con gusto adaptamos cualquier platillo.</p>
+        </div>
+        <a
+          href="/#reservaciones"
+          style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #1a0f0a;
+            background: #c8956c;
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+          "
+          onmouseover="this.style.background='#8b5e3c'; this.style.color='#f5efe6'"
+          onmouseout="this.style.background='#c8956c'; this.style.color='#1a0f0a'"
+        >
+          Reservar mesa
+        </a>
+      </div>
+    </div>
+
+  </main>
+</Layout>
+
+<style>
+  .platillo-row:hover {
+    background: rgba(200,149,108,0.03);
+  }
+
+  .platillo-row:hover .platillo-line {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .platillos-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .platillo-row {
+      padding-left: 0 !important;
+      border-left: none !important;
+    }
+
+    #carta-hero {
+      padding: 48px 24px 40px !important;
+    }
+
+    #carta-body {
+      padding: 0 24px 80px !important;
+    }
+
+    header {
+      padding: 0 24px !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Entrada hero
+  gsap.from("#carta-hero > *", {
+    opacity: 0,
+    y: 30,
+    duration: 0.9,
+    ease: "power3.out",
+    stagger: 0.12,
+    delay: 0.2,
+  });
+
+  // Entrada secciones al scrollear
+  gsap.utils.toArray<HTMLElement>(".carta-seccion").forEach((seccion) => {
+    gsap.from(seccion, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: seccion,
+        start: "top 88%",
+      },
+    });
+  });
+
+  // Entrada individual de platillos
+  gsap.utils.toArray<HTMLElement>(".platillo-row").forEach((row) => {
+    gsap.from(row, {
+      opacity: 0,
+      x: -16,
+      duration: 0.6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: row,
+        start: "top 92%",
+      },
+    });
+  });
+</script>

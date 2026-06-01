@@ -1,0 +1,828 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const carta = [
+  {
+    categoria: "Brunch",
+    descripcion: "Servido de 8am a 12pm",
+    platillos: [
+      { nombre: "Avocado Toast", descripcion: "Pan artesanal, aguacate machacado, huevo poché, microgreens y aceite de oliva extra virgen.", precio: "$145", badge: "Chef's pick", imagen: "https://images.unsplash.com/photo-1623691752472-a6d33855e5de?q=80&w=687" },
+      { nombre: "Huevos Benedictinos", descripcion: "Muffin inglés, jamón serrano, huevo pochado y salsa holandesa al estragón.", precio: "$155", badge: "Favorito", imagen: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=600&q=80" },
+      { nombre: "Pancakes de Ricotta", descripcion: "Pancakes esponjosos con ricotta fresca, miel de abeja y frutos rojos.", precio: "$135", badge: null, imagen: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" },
+      { nombre: "Bowl Açaí", descripcion: "Base de açaí con granola casera, plátano, coco rallado y miel.", precio: "$120", badge: null, imagen: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&q=80" },
+      { nombre: "Tostadas Francesas", descripcion: "Brioche en leche con canela, maple, fresas y crema chantilly.", precio: "$130", badge: null, imagen: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" },
+      { nombre: "Omelette de Hongos", descripcion: "Hongos silvestres, queso gruyère, hierbas frescas y tostada artesanal.", precio: "$140", badge: null, imagen: "https://images.unsplash.com/photo-1510693206972-df098062cb71?w=600&q=80" },
+      { nombre: "Granola Origen", descripcion: "Granola horneada en casa, yogurt griego, miel y fruta de temporada.", precio: "$110", badge: null, imagen: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" },
+      { nombre: "Chilaquiles Rojos", descripcion: "Tortilla en salsa roja, pollo deshebrado, crema, queso fresco y cebolla morada.", precio: "$150", badge: "Temporada", imagen: "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?w=600&q=80" },
+    ],
+  },
+  {
+    categoria: "Para Compartir",
+    descripcion: "Ideal para la mesa",
+    platillos: [
+      { nombre: "Tabla Artesanal", descripcion: "Quesos maduros, embutidos, mermelada de higo, nueces y pan de masa madre.", precio: "$280", badge: null, imagen: "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=600&q=80" },
+      { nombre: "Guacamole de la Casa", descripcion: "Aguacate Hass, jitomate, cebolla, cilantro y totopos horneados.", precio: "$130", badge: null, imagen: "https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=600&q=80" },
+      { nombre: "Hummus con Verduras", descripcion: "Hummus casero con aceite de oliva, pimentón y bastones de verdura fresca.", precio: "$115", badge: null, imagen: "https://images.unsplash.com/photo-1577805947697-89e18249d767?w=600&q=80" },
+      { nombre: "Bruschetta Trío", descripcion: "Tres versiones: jitomate-albahaca, ricotta-miel y aguacate-limón.", precio: "$160", badge: "Chef's pick", imagen: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=600&q=80" },
+    ],
+  },
+  {
+    categoria: "Ensaladas",
+    descripcion: "Frescas y de temporada",
+    platillos: [
+      { nombre: "Ensalada Niçoise", descripcion: "Atún, ejotes, papa cambray, huevo cocido, aceituna y vinagreta de mostaza.", precio: "$165", badge: null, imagen: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" },
+      { nombre: "César Clásica", descripcion: "Lechuga romana, aderezo César casero, crutones de masa madre y parmesano.", precio: "$140", badge: null, imagen: "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=600&q=80" },
+      { nombre: "Betabel y Queso de Cabra", descripcion: "Betabel rostizado, queso de cabra, arúgula, nuez y vinagreta de naranja.", precio: "$150", badge: "Temporada", imagen: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" },
+      { nombre: "Quinoa con Vegetales", descripcion: "Quinoa, calabaza rostizada, espinaca, semillas de girasol y aderezo tahini.", precio: "$145", badge: null, imagen: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" },
+    ],
+  },
+  {
+    categoria: "Bebidas Calientes",
+    descripcion: "Café de especialidad y más",
+    platillos: [
+      { nombre: "Espresso", descripcion: "Doble shot. Origen: Chiapas, tostión media. Notas de cajeta y cítrico.", precio: "$55", badge: null, imagen: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=600&q=80" },
+      { nombre: "Americano", descripcion: "Espresso doble con agua caliente filtrada. Limpio y profundo.", precio: "$60", badge: null, imagen: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&q=80" },
+      { nombre: "Latte", descripcion: "Espresso doble con leche texturizada al vapor. Suave y cremoso.", precio: "$75", badge: "Favorito", imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" },
+      { nombre: "Cappuccino", descripcion: "Espresso, leche vaporizada y espuma sedosa en proporciones exactas.", precio: "$70", badge: null, imagen: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600&q=80" },
+      { nombre: "Matcha Latte", descripcion: "Matcha ceremonial japonés con leche de avena. Herbáceo y reconfortante.", precio: "$80", badge: null, imagen: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&q=80" },
+      { nombre: "Chocolate Caliente", descripcion: "Cacao 70% de Tabasco con leche entera y un toque de canela.", precio: "$80", badge: null, imagen: "https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&q=80" },
+    ],
+  },
+  {
+    categoria: "Bebidas Frías",
+    descripcion: "Refrescantes y artesanales",
+    platillos: [
+      { nombre: "Cold Brew", descripcion: "Infusión en frío 18 horas. Notas de chocolate y caramelo.", precio: "$85", badge: "Origen único", imagen: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&q=80" },
+      { nombre: "Latte Helado", descripcion: "Espresso doble sobre hielo con leche fría texturizada.", precio: "$80", badge: null, imagen: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" },
+      { nombre: "Limonada Menta", descripcion: "Limones frescos, menta de la huerta, agua mineral y miel.", precio: "$65", badge: null, imagen: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=600&q=80" },
+      { nombre: "Smoothie Verde", descripcion: "Espinaca, manzana verde, pepino, jengibre y agua de coco.", precio: "$90", badge: null, imagen: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&q=80" },
+    ],
+  },
+  {
+    categoria: "Postres",
+    descripcion: "Elaborados en casa cada mañana",
+    platillos: [
+      { nombre: "Tarta de Limón", descripcion: "Base de galleta, crema de limón amarillo y merengue italiano tostado.", precio: "$95", badge: "Temporada", imagen: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" },
+      { nombre: "Brownie Fondant", descripcion: "Chocolate belga 70%, centro líquido y helado de vainilla de Madagascar.", precio: "$110", badge: null, imagen: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" },
+      { nombre: "Cheesecake New York", descripcion: "Clásico horneado con base de galleta y coulis de frutos rojos.", precio: "$100", badge: "Favorito", imagen: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600&q=80" },
+      { nombre: "Croissant de Almendra", descripcion: "Croissant artesanal relleno de crema de almendra y azúcar glass.", precio: "$85", badge: null, imagen: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=600&q=80" },
+    ],
+  },
+];
+
+// Extraer todas las imágenes para el preloader
+const todasLasImagenes = carta.flatMap(s => s.platillos.map(p => p.imagen));
+---
+
+<Layout
+  title="Menú — Origen Café"
+  description="Nuestra carta completa con fotografía de cada platillo."
+>
+
+  <!-- Preloader -->
+  <div id="preloader" style="
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #1a0f0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  ">
+    <!-- Logo -->
+    <div style="text-align: center;">
+      <div style="
+        font-family: 'Playfair Display', serif;
+        font-size: 32px;
+        font-weight: 800;
+        color: #f5efe6;
+        letter-spacing: -1px;
+        margin-bottom: 4px;
+      ">Origen</div>
+      <div style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #c8956c;
+      ">Café & Brunch</div>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div style="
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    ">
+      <div style="
+        width: 100%;
+        height: 1px;
+        background: rgba(245,239,230,0.1);
+        border-radius: 99px;
+        overflow: hidden;
+      ">
+        <div id="progress-bar" style="
+          height: 100%;
+          width: 0%;
+          background: #c8956c;
+          border-radius: 99px;
+          transition: width 0.2s ease;
+        "></div>
+      </div>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      ">
+        <span style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          font-weight: 400;
+          color: rgba(245,239,230,0.3);
+          letter-spacing: 0.1em;
+        ">Cargando menú</span>
+        <span id="progress-num" style="
+          font-family: 'Playfair Display', serif;
+          font-size: 13px;
+          font-weight: 600;
+          color: #c8956c;
+        ">0%</span>
+      </div>
+    </div>
+
+    <!-- Detalle decorativo -->
+    <div style="
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.25;
+    ">
+      <div style="height: 1px; width: 20px; background: #f5efe6;"></div>
+      <div style="
+        font-family: 'DM Sans', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #f5efe6;
+      ">Est. 2019</div>
+      <div style="height: 1px; width: 20px; background: #f5efe6;"></div>
+    </div>
+  </div>
+
+  <!-- Contenido (oculto hasta que cargue) -->
+  <div id="page-content" style="opacity: 0;">
+
+    <!-- Navbar -->
+    <header style="
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: #f5efe6;
+      border-bottom: 1px solid rgba(26,15,10,0.08);
+      padding: 0 40px;
+    ">
+      <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      ">
+        <a href="/" style="text-decoration: none; flex-shrink: 0; display: flex; flex-direction: column; line-height: 1;">
+          <span style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1a0f0a; letter-spacing: -0.3px;">Origen</span>
+          <span style="font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #c8956c;">Café & Brunch</span>
+        </a>
+
+        <nav id="cat-nav" style="
+          display: flex;
+          align-items: center;
+          gap: 2px;
+          overflow-x: auto;
+          scrollbar-width: none;
+          flex: 1;
+          justify-content: center;
+        ">
+          {carta.map((s, i) => (
+            <button
+              class="cat-tab"
+              data-target={`seccion-${i}`}
+              style="
+                font-family: 'DM Sans', sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: 0.03em;
+                color: rgba(26,15,10,0.4);
+                background: none;
+                border: none;
+                padding: 7px 14px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: all 0.2s;
+                white-space: nowrap;
+              "
+            >
+              {s.categoria}
+            </button>
+          ))}
+        </nav>
+
+        <a href="/" style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: rgba(26,15,10,0.45);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          flex-shrink: 0;
+          transition: color 0.2s;
+        "
+        onmouseover="this.style.color='#1a0f0a'"
+        onmouseout="this.style.color='rgba(26,15,10,0.45)'"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Inicio
+        </a>
+      </div>
+    </header>
+
+    <main style="padding-top: 72px; background: #f5efe6; min-height: 100vh;">
+
+      <!-- Hero -->
+      <div id="carta-hero" style="
+        background: #1a0f0a;
+        padding: 64px 40px 56px;
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute;
+          top: -100px; left: 50%;
+          transform: translateX(-50%);
+          width: 700px; height: 400px;
+          background: radial-gradient(ellipse, rgba(200,149,108,0.12) 0%, transparent 65%);
+          pointer-events: none;
+        "></div>
+        <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <div style="height: 1px; width: 28px; background: #c8956c;"></div>
+            <span style="font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #c8956c;">Menú completo</span>
+          </div>
+          <h1 style="
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.0;
+            letter-spacing: -2px;
+            color: #f5efe6;
+          ">
+            Todo lo que<br/>
+            <em style="font-style: italic; color: #c8956c;">preparamos</em> hoy
+          </h1>
+        </div>
+      </div>
+
+      <!-- Tab bar mobile — solo visible en mobile -->
+<div id="mobile-tabs" style="
+  display: none;
+  position: sticky;
+  top: 57px;
+  z-index: 40;
+  background: #f5efe6;
+  border-bottom: 1px solid rgba(26,15,10,0.08);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+">
+  <div style="
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 16px;
+    width: max-content;
+  ">
+    {carta.map((s, i) => (
+      <button
+        class="mobile-tab"
+        data-target={`seccion-${i}`}
+        style="
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.03em;
+          color: rgba(26,15,10,0.45);
+          background: rgba(26,15,10,0.05);
+          border: none;
+          padding: 7px 14px;
+          border-radius: 100px;
+          cursor: pointer;
+          transition: all 0.2s;
+          white-space: nowrap;
+        "
+      >
+        {s.categoria}
+      </button>
+    ))}
+  </div>
+</div>
+
+      <!-- Layout sidebar + lista -->
+      <div style="
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 0;
+        align-items: start;
+        padding: 0 40px;
+      " id="menu-layout">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" style="
+          position: sticky;
+          top: 88px;
+          padding: 48px 0;
+          border-right: 1px solid rgba(26,15,10,0.07);
+        ">
+          <p style="
+            font-family: 'DM Sans', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(26,15,10,0.3);
+            margin-bottom: 16px;
+          ">Categorías</p>
+          <nav style="display: flex; flex-direction: column; gap: 2px;">
+            {carta.map((s, i) => (
+              <button
+                class="side-tab"
+                data-target={`seccion-${i}`}
+                style="
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 13px;
+                  font-weight: 500;
+                  color: rgba(26,15,10,0.4);
+                  background: none;
+                  border: none;
+                  padding: 9px 12px 9px 0;
+                  text-align: left;
+                  cursor: pointer;
+                  transition: all 0.2s;
+                  border-left: 2px solid transparent;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                {s.categoria}
+                <span style="font-size: 11px; color: rgba(26,15,10,0.2);">{s.platillos.length}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
+        <!-- Lista platillos -->
+        <div style="padding: 48px 0 48px 48px;">
+          {carta.map((seccion, si) => (
+            <div
+              class="carta-seccion"
+              id={`seccion-${si}`}
+              style={`
+                padding-bottom: 64px;
+                margin-bottom: 64px;
+                ${si < carta.length - 1 ? 'border-bottom: 1px solid rgba(26,15,10,0.07);' : ''}
+              `}
+            >
+              <div style="
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                margin-bottom: 32px;
+                flex-wrap: wrap;
+                gap: 8px;
+              ">
+                <h2 style="
+                  font-family: 'Playfair Display', serif;
+                  font-size: clamp(24px, 3vw, 36px);
+                  font-weight: 800;
+                  letter-spacing: -1px;
+                  color: #1a0f0a;
+                  line-height: 1;
+                ">{seccion.categoria}</h2>
+                <span style="
+                  font-family: 'DM Sans', sans-serif;
+                  font-size: 12px;
+                  color: rgba(26,15,10,0.35);
+                  font-style: italic;
+                ">{seccion.descripcion}</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 2px;">
+                {seccion.platillos.map((p) => (
+                  <div
+                    class="platillo-item"
+                    style="
+                      display: grid;
+                      grid-template-columns: 120px 1fr;
+                      gap: 0;
+                      background: #ffffff;
+                      border-radius: 6px;
+                      overflow: hidden;
+                      border: 1px solid rgba(26,15,10,0.05);
+                      transition: all 0.3s;
+                      cursor: default;
+                    "
+                  >
+                    <div style="position: relative; overflow: hidden; aspect-ratio: 1/1;">
+                      <img
+                        src={p.imagen}
+                        alt={p.nombre}
+                        class="platillo-img preload-img"
+                        style="
+                          width: 100%;
+                          height: 100%;
+                          object-fit: cover;
+                          transition: transform 0.5s ease;
+                        "
+                      />
+                      {p.badge && (
+                        <div style="
+                          position: absolute;
+                          top: 8px; left: 8px;
+                          font-family: 'DM Sans', sans-serif;
+                          font-size: 8px;
+                          font-weight: 700;
+                          letter-spacing: 0.1em;
+                          text-transform: uppercase;
+                          color: #1a0f0a;
+                          background: #c8956c;
+                          padding: 3px 8px;
+                          border-radius: 2px;
+                        ">{p.badge}</div>
+                      )}
+                    </div>
+                    <div style="
+                      padding: 20px 24px;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      gap: 6px;
+                    ">
+                      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+                        <h3 style="
+                          font-family: 'Playfair Display', serif;
+                          font-size: 18px;
+                          font-weight: 700;
+                          color: #1a0f0a;
+                          letter-spacing: -0.3px;
+                          line-height: 1.2;
+                        ">{p.nombre}</h3>
+                        <span style="
+                          font-family: 'Playfair Display', serif;
+                          font-size: 18px;
+                          font-weight: 700;
+                          color: #c8956c;
+                          white-space: nowrap;
+                          flex-shrink: 0;
+                        ">{p.precio}</span>
+                      </div>
+                      <p style="
+                        font-family: 'DM Sans', sans-serif;
+                        font-size: 13px;
+                        font-weight: 300;
+                        color: rgba(26,15,10,0.5);
+                        line-height: 1.65;
+                        max-width: 480px;
+                      ">{p.descripcion}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="border-top: 1px solid rgba(26,15,10,0.08); background: #1a0f0a; padding: 40px;">
+        <div style="
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 20px;
+        ">
+          <div>
+            <p style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: #f5efe6; margin-bottom: 4px;">¿Tienes alguna alergia o restricción?</p>
+            <p style="font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: rgba(245,239,230,0.4);">Díselo a tu mesero — con gusto adaptamos cualquier platillo.</p>
+          </div>
+          <a
+            href="/#reservaciones"
+            style="
+              font-family: 'DM Sans', sans-serif;
+              font-size: 13px;
+              font-weight: 600;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: #1a0f0a;
+              background: #c8956c;
+              padding: 14px 28px;
+              border-radius: 4px;
+              text-decoration: none;
+              transition: background 0.2s;
+              white-space: nowrap;
+            "
+            onmouseover="this.style.background='#8b5e3c'; this.style.color='#f5efe6'"
+            onmouseout="this.style.background='#c8956c'; this.style.color='#1a0f0a'"
+          >
+            Reservar mesa
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Imágenes ocultas para precargar -->
+  <div style="display: none;" aria-hidden="true">
+    {todasLasImagenes.map(src => (
+      <img src={src} class="preload-hidden" />
+    ))}
+  </div>
+
+</Layout>
+
+<style>
+  .platillo-item:hover {
+    box-shadow: 0 8px 32px rgba(26,15,10,0.08) !important;
+    transform: translateX(4px) !important;
+  }
+
+  .platillo-item:hover .platillo-img {
+    transform: scale(1.06);
+  }
+
+  .cat-tab:hover,
+  .side-tab:hover {
+    color: #1a0f0a !important;
+    background: rgba(26,15,10,0.04) !important;
+  }
+
+  .cat-tab.active {
+    color: #1a0f0a !important;
+    background: rgba(26,15,10,0.07) !important;
+    font-weight: 600 !important;
+  }
+
+  .side-tab.active {
+    color: #1a0f0a !important;
+    font-weight: 700 !important;
+    border-left-color: #c8956c !important;
+    padding-left: 12px !important;
+  }
+
+  #cat-nav::-webkit-scrollbar { display: none; }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    #menu-layout {
+      grid-template-columns: 1fr !important;
+      padding: 0 24px !important;
+    }
+
+    #sidebar {
+      display: none !important;
+    }
+
+    #carta-hero {
+      padding: 48px 24px 40px !important;
+    }
+
+    /* Lista de platillos sin padding izquierdo del sidebar */
+    #menu-layout > div {
+      padding: 40px 0 !important;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    header {
+      padding: 0 16px !important;
+    }
+
+    #cat-nav {
+      display: none !important;
+    }
+
+    #carta-hero {
+      padding: 36px 16px 32px !important;
+    }
+
+    #menu-layout {
+      padding: 0 16px !important;
+    }
+
+    #menu-layout > div {
+      padding: 32px 0 !important;
+    }
+
+    /* Secciones con menos espacio */
+    .carta-seccion {
+      padding-bottom: 40px !important;
+      margin-bottom: 40px !important;
+    }
+
+    /* Header de categoría */
+    .carta-seccion > div:first-child {
+      margin-bottom: 20px !important;
+    }
+
+    /* Cards de platillos */
+    .platillo-item {
+      grid-template-columns: 88px 1fr !important;
+    }
+
+    /* Texto dentro del card */
+    .platillo-item h3 {
+      font-size: 15px !important;
+    }
+
+    .platillo-item span {
+      font-size: 15px !important;
+    }
+
+    .platillo-item p {
+      font-size: 12px !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+    }
+
+    /* Padding interno del card */
+    .platillo-item > div:last-child {
+      padding: 14px 16px !important;
+      gap: 4px !important;
+    }
+
+    /* Sin hover translate en mobile */
+    .platillo-item:hover {
+      transform: none !important;
+    }
+
+    /* Footer */
+    #menu-layout ~ div {
+      padding: 32px 16px !important;
+    }
+  }
+
+  /* Muy pequeño */
+  @media (max-width: 380px) {
+    .platillo-item {
+      grid-template-columns: 72px 1fr !important;
+    }
+
+    .platillo-item h3 {
+      font-size: 14px !important;
+    }
+  }
+
+  #mobile-tabs::-webkit-scrollbar { display: none; }
+
+.mobile-tab.active {
+  background: #1a0f0a !important;
+  color: #f5efe6 !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 900px) {
+  #mobile-tabs {
+    display: block !important;
+  }
+}
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const preloader = document.getElementById("preloader") as HTMLElement;
+  const pageContent = document.getElementById("page-content") as HTMLElement;
+  const progressBar = document.getElementById("progress-bar") as HTMLElement;
+  const progressNum = document.getElementById("progress-num") as HTMLElement;
+
+  const imgs = Array.from(document.querySelectorAll<HTMLImageElement>(".preload-hidden"));
+  const total = imgs.length;
+  let loaded = 0;
+  let revealed = false;
+
+  function revealPage() {
+    if (revealed) return;
+    revealed = true;
+
+    setTimeout(() => {
+      gsap.to(preloader, {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.inOut",
+        onComplete: () => {
+          preloader.style.display = "none";
+        },
+      });
+
+      gsap.to(pageContent, {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: 0.3,
+      });
+
+      gsap.from("#carta-hero > div > *", {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: 0.1,
+        delay: 0.6,
+      });
+    }, 300);
+  }
+
+  function onImageLoad() {
+    loaded++;
+    const pct = Math.round((loaded / total) * 100);
+    progressBar.style.width = `${pct}%`;
+    progressNum.textContent = `${pct}%`;
+    if (loaded >= total) revealPage();
+  }
+
+  if (total === 0) {
+    revealPage();
+  } else {
+    imgs.forEach(img => {
+      if (img.complete && img.naturalWidth > 0) {
+        onImageLoad();
+      } else {
+        img.addEventListener("load", onImageLoad);
+        img.addEventListener("error", onImageLoad);
+      }
+    });
+  }
+
+  setTimeout(() => { revealPage(); }, 8000);
+
+  // Todos los tabs
+  const tabs = document.querySelectorAll<HTMLElement>(".cat-tab");
+  const sideTabs = document.querySelectorAll<HTMLElement>(".side-tab");
+  const mobileTabs = document.querySelectorAll<HTMLElement>(".mobile-tab");
+  const secciones = document.querySelectorAll<HTMLElement>(".carta-seccion");
+
+  function scrollToSeccion(id: string) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    window.scrollTo({ top: target.offsetTop - 100, behavior: "smooth" });
+  }
+
+  tabs.forEach(tab => tab.addEventListener("click", () => scrollToSeccion(tab.dataset.target!)));
+  sideTabs.forEach(tab => tab.addEventListener("click", () => scrollToSeccion(tab.dataset.target!)));
+  mobileTabs.forEach(tab => tab.addEventListener("click", () => scrollToSeccion(tab.dataset.target!)));
+
+  // Observer unificado — maneja los 3 tipos de tabs
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        tabs.forEach(t => t.classList.remove("active"));
+        sideTabs.forEach(t => t.classList.remove("active"));
+        mobileTabs.forEach(t => t.classList.remove("active"));
+
+        document.querySelector<HTMLElement>(`.cat-tab[data-target="${id}"]`)?.classList.add("active");
+        document.querySelector<HTMLElement>(`.side-tab[data-target="${id}"]`)?.classList.add("active");
+
+        const activeMobileTab = document.querySelector<HTMLElement>(`.mobile-tab[data-target="${id}"]`);
+        if (activeMobileTab) {
+          activeMobileTab.classList.add("active");
+          activeMobileTab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+      }
+    });
+  }, { threshold: 0.25, rootMargin: "-80px 0px 0px 0px" });
+
+  secciones.forEach(s => observer.observe(s));
+</script>
